@@ -1,9 +1,20 @@
+function! RunTest()
+  let ch = ch_open('localhost:4321', { "mode": "json" })
+  let obj = { "command": "runTest" }
+  let obj["name"] = OmniSharp#py#eval('getFullType()')['type']
+  let obj["filename"] = expand('%:p')
+
+  call ch_sendexpr(ch, obj)
+endfunction
+
 function! StartDebugger()
   let g:db_files = []
   " call job_start('node /home/jpfeiffer/Source/dotdbg/dotdbg/app.js')
   " let term = term_start('node /home/jpfeiffer/Source/dotdbg/dotdbg/client/client.js')
-  let ch = ch_open('localhost:1235', { "mode": "json", "callback": "DebuggerHandle", "close_cb": "DebuggerCloseHandle" })
+  " sleep 300m
+  let ch = ch_open('localhost:4321', { "mode": "json", "callback": "DebuggerHandle", "close_cb": "DebuggerCloseHandle" })
   let obj = {}
+  let obj["command"] = "debugProgram"
   let obj["file"] = fnamemodify(expand("%"), ":p")
   let breakpoints = sign_getplaced()
   for i in breakpoints
