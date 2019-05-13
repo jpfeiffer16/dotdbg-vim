@@ -1,3 +1,13 @@
+function! MicrosoftDocs()
+  let type = OmniSharp#py#eval('getFullType()')['type']
+  execute "!xdg-open 'https://docs.microsoft.com/en-us/dotnet/api/".type."?view=netcore-2.2'"
+endfunction
+
+function! SourceLookup()
+  let type = OmniSharp#py#eval('getFullType()')['type']
+  silent execute '!xdg-open "https://source.dot.net/\#q='.type.'"'
+endfunction
+
 function! DebugTest()
   call InitDebugger("debugTest", {'name': OmniSharp#py#eval('getFullType()')['type']})
 endfunction
