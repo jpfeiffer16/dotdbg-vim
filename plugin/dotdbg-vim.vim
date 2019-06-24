@@ -1,3 +1,9 @@
+sign define brk text=-> texthl=Search
+nnoremap <F9> :call sign_place(expand('%') + '-' + line("."), '', 'brk', expand('%'), { 'lnum': line(".")})<CR>
+nnoremap <C-F9> :call sign_unplace('', { 'id': expand('%') + '-' + line(".")})<CR>
+nnoremap <C-F10> :call StartDebugger()
+nnoremap <C-F11> :call RunTest()
+
 function! MicrosoftDocs()
   let type = OmniSharp#py#eval('getFullType()')['type']
   silent execute "!xdg-open 'https://docs.microsoft.com/en-us/dotnet/api/".type."?view=netcore-2.2'"
