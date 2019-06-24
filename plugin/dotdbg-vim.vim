@@ -1,6 +1,6 @@
 function! MicrosoftDocs()
   let type = OmniSharp#py#eval('getFullType()')['type']
-  execute "!xdg-open 'https://docs.microsoft.com/en-us/dotnet/api/".type."?view=netcore-2.2'"
+  silent execute "!xdg-open 'https://docs.microsoft.com/en-us/dotnet/api/".type."?view=netcore-2.2'"
 endfunction
 
 function! SourceLookup()
